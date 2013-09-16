@@ -18,15 +18,25 @@ module.exports = function (grunt) {
             options: {
                 bail: true,
                 debug: true,
-                reporter: 'nyan'
+                files: ['test/*.js']
             },
-            all: ['test/*.js']
+            spec: {
+                options: {
+                    reporter: 'spec'
+                }
+            },
+            nyan: {
+                options: {
+                    reporter: 'nyan'
+                }
+            }
         },
         watch: {
             files: ['app/{,*/}*.js', 'test/*.js'],
-            tasks: ['jshint:app', 'jshint:test', 'mochacli']
+            tasks: ['jshint:app', 'jshint:test', 'mochacli:nyan']
         }
     });
 
-    grunt.registerTask('test', ['jshint:app', 'jshint:test', 'mochacli']);
+    grunt.registerTask('test', ['jshint:app', 'jshint:test', 'mochacli:nyan']);
+    grunt.registerTask('travis', ['jshint:app', 'jshint:test', 'mochacli:spec']);
 };

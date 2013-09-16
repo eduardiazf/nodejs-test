@@ -2,6 +2,7 @@
 
 var express = require('express'),
     app = module.exports = exports = express(),
+    authorize = require('./middleware/authorize'),
     UserController = require('./controller/user');
 
 
@@ -23,3 +24,8 @@ app.post('/user', function (req, res) {
         return res.status(201).send({ errors: null });
     });
 });
+
+app.get('/user', authorize, function (req, res) {
+    res.status(200).send({ errors: null });
+});
+

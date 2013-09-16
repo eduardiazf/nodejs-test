@@ -29,6 +29,7 @@ describe('@UserModel', function () {
             expect(this.user.get('username')).to.be.equal('eduardiaz');
             expect(this.user.get('email')).to.be.equal('eduar.diaz37@gmail.com');
         });
+
     });
 
     describe('#Save', function () {
@@ -42,6 +43,13 @@ describe('@UserModel', function () {
             this.user.save(function (err) {
                 expect(err).to.be.instanceOf(ValidationError);
                 done();
+            });
+        });
+
+        it('user should attributes, token', function (done) {
+            this.user.save(function (err, doc) {
+                expect(doc.get('token')).to.be.a('string');
+                done(err);
             });
         });
     });

@@ -1,4 +1,5 @@
-var UserController = require('../app/controller/user'),
+var expect = require('chai').expect,
+    UserController = require('../app/controller/user'),
     utils = require('./utils');
 
 
@@ -21,6 +22,19 @@ describe('@Controller user', function () {
 
         it('should create new user', function (done) {
             UserController.create(this.user, done);
+        });
+    });
+
+    describe('Find user by token', function () {
+        it('should by return user, by token', function (done) {
+            UserController.create(this.user, function (err, user) {
+                var token = user.token;
+
+                UserController.findByToken(token, function (err, user) {
+                    expect(user).to.not.be.an('null');
+                    done();
+                });
+            });
         });
     });
 

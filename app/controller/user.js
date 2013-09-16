@@ -1,16 +1,27 @@
 'use strict';
 
 var UserModel = require('../models/user'),
-    create;
+    create,
+    findByToken;
 
 
-create = function (user, done) {
+create = function (user, next) {
     var u = new UserModel(user);
-    u.save(done);
+
+    u.save(function (err, doc) {
+        next(err, doc);
+    });
+};
+
+findByToken = function (token, next) {
+    UserModel.findOne({ 'token': token }, function (err, user) {
+        next(err, user);
+    });
 };
 
 module.exports = (function () {
     return {
-        create: create
+        create: create,
+        findByToken: findByToken
     };
 }());

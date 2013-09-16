@@ -30,6 +30,7 @@
     "chai": "~1.7.2"
   },
   "dependencies": {
-    "mongoose": "~3.6.19"
+    "mongoose": "~3.6.19",
+    "mongoose-validate": "0.0.5"
   }
 }

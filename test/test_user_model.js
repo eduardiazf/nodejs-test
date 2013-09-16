@@ -1,5 +1,6 @@
 var expect = require('chai').expect,
     utils = require('./utils'),
+    ValidationError = require('mongoose').Error.ValidationError,
     UserModel = require('../app/models/user');
 
 
@@ -34,6 +35,14 @@ describe('@UserModel', function () {
 
         it('save user', function (done) {
             this.user.save(done);
+        });
+
+        it('save should fail, if email is not valid', function (done) {
+            this.user.email = 'eduar.diaz37gmail.com';
+            this.user.save(function (err) {
+                expect(err).to.be.instanceOf(ValidationError);
+                done();
+            });
         });
     });
 

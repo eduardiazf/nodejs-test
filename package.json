@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-test",
+  "version": "0.0.1",
+  "description": "Nodejs-test",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:EduardoDiaz/nodejs-test.git"
+  },
+  "keywords": [
+    "nodejs-test"
+  ],
+  "author": "Eduardo Diaz",
+  "license": "GPL v2",
+  "bugs": {
+    "url": "https://github.com/EduardoDiaz/nodejs-test/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-mocha-cli": "~1.2.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "matchdep": "~0.1.2",
+    "chai": "~1.7.2"
+  }
+}

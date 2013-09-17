@@ -36,6 +36,12 @@ describe('@Api User', function () {
                 .expect(403, done);
         });
 
+        it('should return 400, if token is provided', function (done) {
+            request(app)
+                .get('/user')
+                .expect(400, done);
+        });
+
         it('should return 200 and user, if token valid', function (done) {
             var user = new UserModel({
                 username: 'test',

@@ -7,6 +7,10 @@ module.exports = function (req, res, next) {
     var authorization, token;
 
     authorization = req.get('authorization');
+    if (!authorization) {
+        return res.status(400).send({ errors: 'request malformed' });
+    }
+
     token = authorization.split(' ')[1];
 
     UserController.findByToken(token, function (err, doc) {

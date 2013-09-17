@@ -7,6 +7,7 @@ var express = require('express'),
 
 
 app.configure(function () {
+    app.set('port', process.env.PORT || '80');
     app.use(express.logger('dev'));
     app.use(express.cookieParser());
     app.use(express.bodyParser());

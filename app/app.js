@@ -20,13 +20,13 @@ app.post('/user', function (req, res) {
         email: req.body.email
     };
 
-    UserController.create(user, function (err) {
+    UserController.create(user, function (err, user) {
         if (err) { return res.status(500).send({ errors: err }); }
-        return res.status(201).send({ errors: null });
+        return res.status(201).send({ errors: null, token: user.get('token')});
     });
 });
 
 app.get('/user', authorize, function (req, res) {
-    res.status(200).send({ errors: null });
+    res.status(200).send({ errors: null, data: req.user });
 });
 
